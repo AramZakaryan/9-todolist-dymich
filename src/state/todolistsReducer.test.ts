@@ -1,7 +1,7 @@
 import {CondType, todolistType} from "../App";
 import {v1} from "uuid";
 import {
-    actionType,
+    todolistActionType,
     addTodolistAC,
     changeFilterCondAC,
     changeTodolistTitleAC,
@@ -15,15 +15,15 @@ let todolistId2: string
 
 beforeEach(() => {
 
-        todolistId1 = v1()
-        todolistId2 = v1()
+    todolistId1 = v1()
+    todolistId2 = v1()
 
-        initialState = [
-            {id: todolistId1, todolistTitle: "What to learn?", filterCond: "All"},
-            {id: todolistId2, todolistTitle: "What to buy?", filterCond: "All"}
-        ]
+    initialState = [
+        {id: todolistId1, todolistTitle: "What to learn?", filterCond: "All"},
+        {id: todolistId2, todolistTitle: "What to buy?", filterCond: "All"}
+    ]
 
-    })
+})
 
 test("Correct todolist should be removed", () => {
 
@@ -44,7 +44,7 @@ test("Correct todolist should be added", () => {
     // data
     const newTodolistTitle: string = "New Todolist"
     // const action: actionType = {type: "addTodolist", todolistTitle: newTodolistTitle}
-    const action: actionType = addTodolistAC(newTodolistTitle)
+    const action: todolistActionType = addTodolistAC(newTodolistTitle)
 
     // action
     const updatedState = todolistsReducer(initialState, action)
@@ -65,7 +65,7 @@ test("Correct todolist should change its title", () => {
     //     id: todolistId2,
     //     updatedTodolistTitle: updatedTodolistTitle
     // }
-    const action: actionType = changeTodolistTitleAC(todolistId2, updatedTodolistTitle)
+    const action: todolistActionType = changeTodolistTitleAC(todolistId2, updatedTodolistTitle)
 
     // action
     const updatedState = todolistsReducer(initialState, action)
@@ -85,7 +85,7 @@ test("incorrect id number for changing the todolist title should cause an error"
     //     updatedTodolistTitle: updatedTodolistTitle
     // }
 
-    const action: actionType = changeTodolistTitleAC("1234", updatedTodolistTitle) // id which does not exist
+    const action: todolistActionType = changeTodolistTitleAC("1234", updatedTodolistTitle) // id which does not exist
 
     // expectation
     expect(() => {
@@ -102,7 +102,7 @@ test("Correct todolist filter should be changed", () => {
     //     id: todolistId1,
     //     updatedFilterCond: updatedFilterCond
     // }
-    const action: actionType = changeFilterCondAC(todolistId1,updatedFilterCond)
+    const action: todolistActionType = changeFilterCondAC(todolistId1, updatedFilterCond)
 
     // action
     const updatedState = todolistsReducer(initialState, action)
@@ -120,7 +120,7 @@ test("incorrect id number for changing the todolist filterCond should cause an e
     //     id: "1234", // id which does not exist
     //     updatedFilterCond: updatedFilterCond
     // }
-    const action: actionType = changeFilterCondAC("1234",updatedFilterCond) // id which does not exist
+    const action: todolistActionType = changeFilterCondAC("1234", updatedFilterCond) // id which does not exist
 
     // expectation
     expect(() => {

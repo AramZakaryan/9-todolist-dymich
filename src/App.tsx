@@ -20,7 +20,7 @@ import {Delete, DeleteForever, DeleteRounded, Menu} from '@mui/icons-material'
 
 export type CondType = "All" | "Active" | "Completed"
 
-type allTasksType = {
+export type allTasksType = {
     [key: string]: TaskType[]
 }
 
@@ -118,8 +118,6 @@ function App() {
 
 
     let todolistId1 = v1()
-
-
     let todolistId2 = v1()
 
     const [todolists, setTodolists] =
